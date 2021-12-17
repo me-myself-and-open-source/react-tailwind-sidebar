@@ -5,6 +5,7 @@ export default function Menu({ children, isClosed, setIsClosed, isStatic }) {
     return (
         <div className="flex bg-gray-100">
             <Transition
+                appear={true}
                 show={isStatic || !isClosed}
                 enter="transition-all duration-500"
                 enterFrom="-ml-64"

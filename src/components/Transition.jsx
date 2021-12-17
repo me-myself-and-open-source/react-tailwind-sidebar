@@ -5,16 +5,16 @@
  * I modified the script to not remove the enterTo and leaveTo classes upon completing the transition
  * Instead they're removed when the opposite transition begins
  */
+import { createContext, useContext, useEffect, useRef } from 'react'
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
-import * as React from 'react'
 
-const TransitionContext = React.createContext({
+const TransitionContext = createContext({
     parent: {},
 })
 
 function useIsInitialRender() {
-    const isInitialRender = React.useRef(true)
-    React.useEffect(() => {
+    const isInitialRender = useRef(true)
+    useEffect(() => {
         isInitialRender.current = false
     }, [])
     return isInitialRender.current
@@ -83,7 +83,7 @@ function CSSTransition({
 }
 
 function Transition({ show, appear, ...rest }) {
-    const { parent } = React.useContext(TransitionContext)
+    const { parent } = useContext(TransitionContext)
     const isInitialRender = useIsInitialRender()
     const isChild = show === undefined
 
